@@ -1,5 +1,7 @@
 # SQL-Queries
 
+## JOIN Queries
+
 Different Types of SQL JOINs
 Here are the different types of the JOINs in SQL:
 
@@ -15,3 +17,9 @@ FULL (OUTER) JOIN: Returns all records when there is a match in either left or r
 ![left_join](/SQL_Joins/sql_leftjoin.gif)
 ![right_join](/SQL_Joins/sql_rightjoin.gif)
 ![full_outer_join](/SQL_Joins/sql_fullouterjoin.gif)
+
+## DROP TABLE and TRUCATE TABLE
+
+```DROP TABLE``` deletes a table in the database.
+
+```TRUNCATE TABLE``` deletes the data inside a table, but not the table itself. 
