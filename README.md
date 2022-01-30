@@ -10,5 +10,5 @@ FULL (OUTER) JOIN: Returns all records when there is a match in either left or r
 
 ![inner_join](/SQL_Joins/sql_innerjoin.gif)
 ![left_join](/SQL_Joins/sql_leftjoin.gif)
-![right_join](/SQL_joins/sql_rightjoin.gif)
-![full_outer_join](/SQL_joins/sql_fullouterjoin.gif)
+![right_join](/SQL_Joins/sql_rightjoin.gif)
+![full_outer_join](/SQL_Joins/sql_fullouterjoin.gif)
