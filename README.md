@@ -1,5 +1,7 @@
 # SQL-Queries
 
+Test SQL queries are run in Python using pandas data frames and the pandasql library.
+
 ## JOIN Queries
 
 Different Types of SQL JOINs
