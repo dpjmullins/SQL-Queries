@@ -8,7 +8,7 @@ LEFT (OUTER) JOIN: Returns all records from the left table, and the matched reco
 RIGHT (OUTER) JOIN: Returns all records from the right table, and the matched records from the left table
 FULL (OUTER) JOIN: Returns all records when there is a match in either left or right table
 
-![inner_join](/sql_joins/sql_innerjoin.gif)
-![left_join](/sql_joins/sql_innerjoin.gif)
-![right_join](/sql_joins/sql_innerjoin.gif)
-![full_outer_join](/sql_joins/sql_innerjoin.gif)
+![inner_join](/SQL_joins/sql_innerjoin.gif)
+![left_join](/SQL_joins/sql_innerjoin.gif)
+![right_join](/SQL_joins/sql_innerjoin.gif)
+![full_outer_join](/SQL_joins/sql_innerjoin.gif)
