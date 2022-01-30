@@ -20,7 +20,7 @@ FULL (OUTER) JOIN: Returns all records when there is a match in either left or r
 ![right_join](/SQL_Joins/sql_rightjoin.gif)
 ![full_outer_join](/SQL_Joins/sql_fullouterjoin.gif)
 
-## DROP TABLE and TRUCATE TABLE
+## DROP TABLE and TRUNCATE TABLE
 
 ```DROP TABLE``` deletes a table in the database.
 
