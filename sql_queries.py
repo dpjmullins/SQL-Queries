@@ -17,10 +17,18 @@ accounts = pd.read_csv("./Mock dataset/Accounts.csv")
 ## Run queries
 #print(consumption.head())
 
-## SELECT query
+## SELECT queries
 
 select_query = mysql("SELECT * from metermaster LIMIT 5;")
 #print(select_query)
+
+select_query2 = '''
+SELECT * 
+FROM consumption
+WHERE Date BETWEEN '10/01/2021' AND '13/01/2021'
+'''
+
+print(mysql(select_query2))
 
 ## JOIN queries
 
