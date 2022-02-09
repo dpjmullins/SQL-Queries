@@ -2,6 +2,10 @@
 
 Test SQL queries are run in Python using pandas data frames and the pandasql library.
 
+The SQL queries can be found in the script "sql_queries.py". Join, aggregation and complex nested queries are shown.
+
+Some SQL functions are described below. 
+
 ## JOIN Queries
 
 Different Types of SQL JOINs
