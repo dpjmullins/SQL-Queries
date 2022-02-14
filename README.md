@@ -1,6 +1,6 @@
 # SQL-Queries
 
-Test SQL queries are run in Python using pandas data frames and the pandasql library.
+Test SQL queries are run in Python using pandas data frames and the ```pandasql``` library.
 
 The SQL queries can be found in the script "sql_queries.py". Join, aggregation and complex nested queries are shown.
 
@@ -53,7 +53,7 @@ accounts = pd.read_csv("./Mock dataset/Accounts.csv")
 customers = pd.read_csv("./Mock dataset/Customers.csv")
 ```
 
-### Find the average electricity usage for meters in the town of Dungarvan
+### QUERY: Find the average electricity usage for meters in the town of Dungarvan
 
 ```python
 ## Specify the query string
@@ -69,7 +69,7 @@ GROUP BY c.MeterID;
 print(mysql(aggregate_query))
 ```
 
-### Find the monthly average electricity usage by town
+### QUERY: Find the monthly average electricity usage by town
 
 ```python
 aggregate_query2 = '''
@@ -83,7 +83,7 @@ GROUP BY Month, cu.Town
 print(mysql(aggregate_query2))
 ```
 
-### Find the name of the customer with the greatest electricity consumption in January
+### QUERY: Find the name of the customer with the greatest electricity consumption in January
 
 ```python
 highest_customer_query = '''
