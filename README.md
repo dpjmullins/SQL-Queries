@@ -40,13 +40,23 @@ Pandasql needs to use the python function ```strftime('%Y', date)``` to extract 
 
 ### First create a lambda function for running the SQL queries
 
-```
+```python
 mysql = lambda q: sqldf(q, globals())
+```
+
+### Import data using pandas
+
+```python
+consumption = pd.read_csv("./Mock dataset/Consumption.csv")
+metermaster = pd.read_csv("./Mock dataset/MeterMaster.csv")
+accounts = pd.read_csv("./Mock dataset/Accounts.csv")
+customers = pd.read_csv("./Mock dataset/Customers.csv")
 ```
 
 ### Find the average electricity usage for meters in the town of Dungarvan
 
-```
+```python
+## Specify the query string
 aggregate_query = '''
 SELECT c.MeterID, AVG(c.Usage) AS 'MeterUsage (kWh)'
 FROM consumption AS c
@@ -55,12 +65,13 @@ WHERE m.City = "Dungarvan"
 GROUP BY c.MeterID;
 '''
 
+## Run the SQL query
 print(mysql(aggregate_query))
 ```
 
 ### Find the monthly average electricity usage by town
 
-```
+```python
 aggregate_query2 = '''
 SELECT strftime('%m', co.Date) AS Month, cu.Town AS Town, AVG(co.Usage) AS AverageUsage
 FROM consumption AS co
@@ -74,7 +85,7 @@ print(mysql(aggregate_query2))
 
 ### Find the name of the customer with the greatest electricity consumption in January
 
-```
+```python
 highest_customer_query = '''
 SELECT s1.FirstName, s1.Surname, MAX(s2.SummedUsage) AS Usage
 FROM 
