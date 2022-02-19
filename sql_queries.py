@@ -17,10 +17,10 @@ customers = pd.read_csv("./Mock dataset/Customers.csv")
 
 consumption['Date'] = pd.to_datetime(consumption['Date']) ## convert Date column to datatime format
 
-#print(consumption.head())
-# print(metermaster.head())
-# print(accounts.head())
-# print(customers.head())
+print(consumption.head())
+print(metermaster.head())
+print(accounts.head())
+print(customers.head())
 
 # Run queries
 
@@ -103,7 +103,7 @@ ORDER BY SUM(c.Usage) DESC
 LIMIT 1 OFFSET 1
 '''
 
-#print(mysql(second_highest_query))
+print(mysql(aggregate_query))
 
 ### Find the name of the customer with the greatest electricity consumption in January
 

@@ -104,7 +104,40 @@ accounts = pd.read_csv("./Mock dataset/Accounts.csv")
 customers = pd.read_csv("./Mock dataset/Customers.csv")
 ```
 
-### QUERY: Find the average electricity usage for meters in the town of Dungarvan
+### Display data columns
+
+```
+## consumption table
+  MeterID       Date  Hour     Usage
+0    E101 2021-01-01     0  0.623588
+1    E101 2021-01-01     1  0.412385
+2    E101 2021-01-01     2  0.502635
+3    E101 2021-01-01     3  0.411973
+4    E101 2021-01-01     4  0.272102
+
+## metermaster table
+  MeterID  Eircode       City ServingUtility
+0    E101  X35JU99  Dungarvan    Electricity
+1    E201  YH9YA32  Waterford    Electricity
+2    E301  Z11HJ34  Waterford    Electricity
+3    E401  X72GW76  Dungarvan    Electricity
+
+## accounts table
+  MeterID AccountNumber CustomerID BillID  Rate ContractStart ContractEnd
+0    E101           A01        C01   B001    20     1 01 2021         NaN
+1    E201           A02        C02   B002    19     1 06 2015         NaN
+2    E301           A03        C03   B003    28    13 01 2019   1 12 2020
+3    E401           A04        C04   B004    26     1 01 2020         NaN
+
+## customers table
+  CustomerID FirstName Surname        Address       Town
+0        C01      Mike   Kelly   123 Oak Road  Dungarvan
+1        C02    Sandra  Murphy   34 Pine Wood  Waterford
+2        C03   Francis   Burke  20 Town Court  Waterford
+3        C04    Martin   Kelly  1 The Meadows  Dungarvan
+```
+
+### QUERY1: Find the average electricity usage for meters in the town of Dungarvan
 
 ```python
 ## Specify the query string
@@ -118,6 +151,14 @@ GROUP BY c.MeterID;
 
 ## Run the SQL query
 print(mysql(aggregate_query))
+```
+
+#### QUERY1 Output
+
+```
+  MeterID  MeterUsage (kWh)
+0    E101          0.496900
+1    E401          0.500057
 ```
 
 ### QUERY: Find the monthly average electricity usage by town
