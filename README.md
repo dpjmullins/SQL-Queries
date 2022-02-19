@@ -161,7 +161,7 @@ print(mysql(aggregate_query))
 1    E401          0.500057
 ```
 
-### QUERY2: Find the monthly average electricity usage by town
+### QUERY2: Find the monthly average daily electricity usage by town
 
 ```python
 aggregate_query2 = '''
@@ -217,8 +217,8 @@ FROM
     (   
     SELECT co.MeterID AS MeterID, cu.FirstName AS FirstName, cu.Surname AS Surname
     FROM consumption AS co
-    LEFT JOIN accounts AS a ON co.MeterID = a.MeterID 
-    LEFT JOIN customers AS cu ON a.CustomerID = cu.CustomerID
+    INNER JOIN accounts AS a ON co.MeterID = a.MeterID 
+    INNER JOIN customers AS cu ON a.CustomerID = cu.CustomerID
     GROUP BY co.MeterID
     ) AS s1
 INNER JOIN 
@@ -237,6 +237,6 @@ print(mysql(highest_customer_query))
 #### QUERY4 Output
 
 ```
-  FirstName Surname        Usage
-0    Martin   Kelly  1080.123253
+  FirstName Surname       Usage
+0    Martin   Kelly  363.688965
 ```

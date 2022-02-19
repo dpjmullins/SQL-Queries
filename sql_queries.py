@@ -113,15 +113,15 @@ FROM
     (   
     SELECT co.MeterID AS MeterID, cu.FirstName AS FirstName, cu.Surname AS Surname
     FROM consumption AS co
-    LEFT JOIN accounts AS a ON co.MeterID = a.MeterID 
-    LEFT JOIN customers AS cu ON a.CustomerID = cu.CustomerID
+    INNER JOIN accounts AS a ON co.MeterID = a.MeterID 
+    INNER JOIN customers AS cu ON a.CustomerID = cu.CustomerID
     GROUP BY co.MeterID
     ) AS s1
 INNER JOIN 
     (
     SELECT co.MeterID AS MeterID, SUM(co.Usage) AS SummedUsage
     FROM consumption AS co
-    WHERE co.Date BETWEEN '2021-01-01' AND '2021-31-01'
+    WHERE co.Date BETWEEN '2021-01-01' AND '2021-01-31'
     GROUP BY co.MeterID
     ) AS s2
 ON s1.MeterID = s2.MeterID;
