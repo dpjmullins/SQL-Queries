@@ -15,9 +15,14 @@ metermaster = pd.read_csv("./Mock dataset/MeterMaster.csv")
 accounts = pd.read_csv("./Mock dataset/Accounts.csv")
 customers = pd.read_csv("./Mock dataset/Customers.csv")
 
-## Run queries
-#print(consumption.head())
 consumption['Date'] = pd.to_datetime(consumption['Date']) ## convert Date column to datatime format
+
+#print(consumption.head())
+# print(metermaster.head())
+# print(accounts.head())
+# print(customers.head())
+
+# Run queries
 
 ## SELECT queries
 
@@ -31,7 +36,15 @@ FROM consumption
 WHERE Date BETWEEN '10/01/2021' AND '13/01/2021'
 '''
 
-#print(mysql(select_query2))
+### Find the number of readings per meter per month
+
+select_query3 = '''
+SELECT c.MeterID AS MeterID, strftime('%m', c.Date) AS Month, COUNT(c.Usage) AS NumberOfReadings
+FROM consumption AS c
+GROUP BY Month, MeterID
+'''
+
+#print(mysql(select_query3))
 
 ## JOIN queries
 
@@ -81,9 +94,18 @@ INNER JOIN customers as cu ON a.CustomerID = cu.CustomerID
 GROUP BY Month, cu.Town
 '''
 
-#print(mysql(aggregate_query2))
+### Find the second highest cumulative value
+second_highest_query = '''
+SELECT c.MeterID AS MeterID, SUM(c.Usage) AS SecondHighest
+FROM consumption AS c
+GROUP BY c.MeterID
+ORDER BY SUM(c.Usage) DESC
+LIMIT 1 OFFSET 1
+'''
 
-## Find the name of the customer with the greatest electricity consumption in January
+#print(mysql(second_highest_query))
+
+### Find the name of the customer with the greatest electricity consumption in January
 
 highest_customer_query = '''
 SELECT s1.FirstName, s1.Surname, MAX(s2.SummedUsage) AS Usage

@@ -8,6 +8,57 @@ Some SQL functions are described below.
 
 ## SQL Guide
 
+### Numeric Functions
+
+| Function | Description |
+| --- | --- |
+| `AVG` | Returns the average value of an expression |
+| `COUNT` | Returns the number of records returned by a SELECT query |
+| `FLOOR` | Returns the largest integer value that is <= to a number |
+| `LOG` | Returns the natural logarithm of a number |
+| `LOG10` |	Returns the natural logarithm of a number to base 10 |
+| `MAX` | Returns the maximum value in a set of values |
+| `MIN` | Returns the minimum value in a set of values |
+| `POWER` | Returns the value of a number raised to the power of another number |
+| `ROUND` | Rounds a number to a specified number of decimal places |
+| `SQRT` | Returns the square root of a number |
+| `SQUARE` | Returns the square of a number |
+| `SUM` | Calculates the sum of a set of values |
+
+### String Functions
+
+| Function | Description |
+| --- | --- |
+| `CONCAT(string1, string2, ...., string_n)` | Adds two or more strings together |
+| `LEFT(string, number_of_chars)` | Extracts a number of characters from a string (starting from left) |
+| `LEN` | Returns the length of a string |
+| `LOWER` | Converts a string to lower-case |
+| `LTRIM` | Removes leading spaces from a string |
+| `REPLACE(string, old_string, new_string)` | Replaces all occurrences of a substring within a string, with a new substring |
+| `REPLICATE(string, integer)` | Repeats a string a specified number of times |
+| `REVERSE` | Reverses a string and returns the result |
+| `RIGHT(string, number_of_chars)` | Extracts a number of characters from a string (starting from right) |
+| `RTRIM` | Removes trailing spaces from a string |
+| `STR` | Returns a number as a string |
+| `SUBSTRING(string, start, length)` | Extracts some characters from a string |
+| `TRIM` | Removes leading and trailing spaces from a string |
+| `UPPER` | Converts a string to upper-case |
+
+### Date Functions
+
+| Function | Description |
+| --- | --- |
+| `DATEADD(interval, number, date)` | Adds a time/date interval to a date and then returns the date |
+| `DATEDIFF(interval, date1, date2)` | Returns the difference between two dates |
+| `DATEFROMPARTS(year, month, day)` | Returns a date from the specified parts (year, month, and day values) |
+| `DATENAME(interval, date)` | Returns a specified part of a date (as string). The interval part represents a data string such as "yy" for year or "mm" for month. |
+| `DATEPART(interval, date)` | Returns a specified part of a date (as integer). The interval part represents a data string such as "yy" for year or "mm" for month. |
+| `DAY` | Returns the day of the month for a specified date |
+| `GETDATE()` | Returns the current database system date and time |
+| `ISDATE` | Checks an expression and returns 1 if it is a valid date, otherwise 0 |
+| `MONTH` | Returns the month part for a specified date (a number from 1 to 12) |
+| `YEAR` | Returns the year part for a specified date |
+
 ### JOIN Queries
 
 Different Types of SQL JOINs
@@ -82,6 +133,21 @@ GROUP BY Month, cu.Town
 
 print(mysql(aggregate_query2))
 ```
+
+### QUERY: Find the second highest cumulative value
+
+```python
+second_highest_query = '''
+SELECT c.MeterID AS MeterID, SUM(c.Usage) AS SecondHighest
+FROM consumption AS c
+GROUP BY c.MeterID
+ORDER BY SUM(c.Usage) DESC
+LIMIT 1 OFFSET 1
+'''
+
+print(mysql(second_highest_query))
+```
+
 
 ### QUERY: Find the name of the customer with the greatest electricity consumption in January
 
