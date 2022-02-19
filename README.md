@@ -161,7 +161,7 @@ print(mysql(aggregate_query))
 1    E401          0.500057
 ```
 
-### QUERY: Find the monthly average electricity usage by town
+### QUERY2: Find the monthly average electricity usage by town
 
 ```python
 aggregate_query2 = '''
@@ -175,7 +175,19 @@ GROUP BY Month, cu.Town
 print(mysql(aggregate_query2))
 ```
 
-### QUERY: Find the second highest cumulative value
+#### QUERY2 Output
+
+```
+  Month       Town  AverageUsage
+0    01  Dungarvan      0.497655
+1    01  Waterford      0.496820
+2    02  Dungarvan      0.492339
+3    02  Waterford      0.501512
+4    03  Dungarvan      0.504847
+5    03  Waterford      0.499211
+```
+
+### QUERY3: Find the second highest cumulative value
 
 ```python
 second_highest_query = '''
@@ -189,8 +201,14 @@ LIMIT 1 OFFSET 1
 print(mysql(second_highest_query))
 ```
 
+#### QUERY3 Output
 
-### QUERY: Find the name of the customer with the greatest electricity consumption in January
+```
+  MeterID  SecondHighest
+0    E201    1078.331265
+```
+
+### QUERY4: Find the name of the customer with the greatest electricity consumption in January
 
 ```python
 highest_customer_query = '''
@@ -207,11 +225,18 @@ INNER JOIN
     (
     SELECT co.MeterID AS MeterID, SUM(co.Usage) AS SummedUsage
     FROM consumption AS co
-    WHERE co.Date BETWEEN '2021/01/01' AND '2021/01/31'
+    WHERE co.Date BETWEEN '2021-01-01' AND '2021-01-31'
     GROUP BY co.MeterID
     ) AS s2
 ON s1.MeterID = s2.MeterID;
 '''
 
 print(mysql(highest_customer_query))
+```
+
+#### QUERY4 Output
+
+```
+  FirstName Surname        Usage
+0    Martin   Kelly  1080.123253
 ```

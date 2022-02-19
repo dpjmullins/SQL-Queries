@@ -103,7 +103,7 @@ ORDER BY SUM(c.Usage) DESC
 LIMIT 1 OFFSET 1
 '''
 
-print(mysql(aggregate_query))
+#print(mysql(second_highest_query))
 
 ### Find the name of the customer with the greatest electricity consumption in January
 
@@ -121,10 +121,10 @@ INNER JOIN
     (
     SELECT co.MeterID AS MeterID, SUM(co.Usage) AS SummedUsage
     FROM consumption AS co
-    WHERE co.Date BETWEEN '2021/01/01' AND '2021/31/01'
+    WHERE co.Date BETWEEN '2021-01-01' AND '2021-31-01'
     GROUP BY co.MeterID
     ) AS s2
 ON s1.MeterID = s2.MeterID;
 '''
 
-#print(mysql(highest_customer_query))
+print(mysql(highest_customer_query))
