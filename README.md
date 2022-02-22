@@ -241,7 +241,7 @@ print(mysql(highest_customer_query))
 0    Martin   Kelly  363.688965
 ```
 
-### QUERY5:
+### QUERY5: Calculate each customers monthly bill
 
 ```python
 monthly_bill_query = '''
