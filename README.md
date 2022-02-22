@@ -240,3 +240,41 @@ print(mysql(highest_customer_query))
   FirstName Surname       Usage
 0    Martin   Kelly  363.688965
 ```
+
+### QUERY5:
+
+```python
+monthly_bill_query = '''
+SELECT s1.MeterID, s1.Month, cu.FirstName, cu.Surname, cu.Address, MonthlyUsage, ROUND((MonthlyUsage * a.RateCent),2) AS 'MonthlyBill €'
+FROM (
+    SELECT c.MeterID AS MeterID, strftime('%m', c.Date) AS Month, SUM(c.Usage) AS MonthlyUsage
+    FROM consumption AS c
+    GROUP BY MeterID, Month
+) AS s1
+INNER JOIN (
+    SELECT a.MeterID AS MeterID, a.CustomerID AS CustomerID, (a.Rate * 0.01) AS RateCent
+    FROM accounts AS a 
+) AS a ON s1.MeterID = a.MeterID
+INNER JOIN customers AS cu ON a.CustomerID = cu.CustomerID;
+'''
+
+print(mysql(monthly_bill_query))
+```
+
+#### QUERY5 Output
+
+```
+   MeterID Month FirstName Surname        Address  MonthlyUsage  MonthlyBill €
+0     E101    01      Mike   Kelly   123 Oak Road    365.377871          73.08
+1     E101    02      Mike   Kelly   123 Oak Road    330.833306          66.17
+2     E101    03      Mike   Kelly   123 Oak Road    377.092080          75.42
+3     E201    01    Sandra  Murphy   34 Pine Wood    367.655807          69.85
+4     E201    02    Sandra  Murphy   34 Pine Wood    337.599044          64.14
+5     E201    03    Sandra  Murphy   34 Pine Wood    373.076414          70.88
+6     E301    01   Francis   Burke  20 Town Court    371.612505         104.05
+7     E301    02   Francis   Burke  20 Town Court    336.433071          94.20
+8     E301    03   Francis   Burke  20 Town Court    369.750230         103.53
+9     E401    01    Martin   Kelly  1 The Meadows    375.132633          97.53
+10    E401    02    Martin   Kelly  1 The Meadows    330.870520          86.03
+11    E401    03    Martin   Kelly  1 The Meadows    374.120100          97.27
+```

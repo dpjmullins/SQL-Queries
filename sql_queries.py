@@ -127,4 +127,22 @@ INNER JOIN
 ON s1.MeterID = s2.MeterID;
 '''
 
-print(mysql(highest_customer_query))
+#print(mysql(highest_customer_query))
+
+### Calculate each customers monthly bill
+
+monthly_bill_query = '''
+SELECT s1.MeterID, s1.Month, cu.FirstName, cu.Surname, cu.Address, MonthlyUsage, ROUND((MonthlyUsage * a.RateCent),2) AS 'MonthlyBill €'
+FROM (
+    SELECT c.MeterID AS MeterID, strftime('%m', c.Date) AS Month, SUM(c.Usage) AS MonthlyUsage
+    FROM consumption AS c
+    GROUP BY MeterID, Month
+) AS s1
+INNER JOIN (
+    SELECT a.MeterID AS MeterID, a.CustomerID AS CustomerID, (a.Rate * 0.01) AS RateCent
+    FROM accounts AS a 
+) AS a ON s1.MeterID = a.MeterID
+INNER JOIN customers AS cu ON a.CustomerID = cu.CustomerID;
+'''
+
+#print(mysql(monthly_bill_query))
